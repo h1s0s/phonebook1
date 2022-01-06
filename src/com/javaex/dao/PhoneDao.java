@@ -18,7 +18,7 @@ public class PhoneDao {
 	ResultSet rs = null;
 
 	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@172.30.1.54:1521:xe";
+	private String url = "jdbc:oracle:thin:@192.168.0.12:1521:xe";
 	private String id = "phonedb";
 	private String pw = "phonedb";
 
@@ -54,8 +54,50 @@ public class PhoneDao {
 			System.out.println("error:" + e);
 		}
 	}
-
 	// 사람 추가
+	// 사람 1명정보만 가져올때
+	   public PersonVo getPerson(int personId) {
+	      PersonVo personVo = null;
+	      
+	      getConnection();
+
+	      try {
+
+	         // 3. SQL문 준비 / 바인딩 / 실행 --> 완성된 sql문을 가져와서 작성할것
+	         String query = "";
+	         query += " select  person_id, ";
+	         query += "         name, ";
+	         query += "         hp, ";
+	         query += "         company ";
+	         query += " from person ";
+	         query += " where person_id = ? ";
+
+	         pstmt = conn.prepareStatement(query); // 쿼리로 만들기
+
+	         pstmt.setInt(1, personId); // ?(물음표) 중 1번째, 순서중요
+	         
+	         
+	         rs = pstmt.executeQuery();
+
+	         // 4.결과처리
+	            rs.next();
+	            int id = rs.getInt("person_id");
+	            String name = rs.getString("name");
+	            String hp = rs.getString("hp");
+	            String company = rs.getString("company");
+
+	            personVo = new PersonVo(id, name, hp, company);
+	         
+
+	      } catch (SQLException e) {
+	         System.out.println("error:" + e);
+	      }
+
+	      close();
+
+	      return personVo;
+
+	   }
 	public int personInsert(PersonVo personVo) {
 		int count = 0;
 		getConnection();
