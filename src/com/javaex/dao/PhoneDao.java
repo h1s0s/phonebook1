@@ -18,7 +18,7 @@ public class PhoneDao {
 	ResultSet rs = null;
 
 	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@192.168.0.12:1521:xe";
+	private String url = "jdbc:oracle:thin:@192.168.0.62:1521:xe";
 	private String id = "phonedb";
 	private String pw = "phonedb";
 

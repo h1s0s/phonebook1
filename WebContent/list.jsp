@@ -42,6 +42,6 @@
 		</table>
 		<br>
 		<% } %>
-		<a href="./writeForm.jsp">전화번호 등록폼</a><%--.으로 하면 현재위치/이동 --%>
+		<a href="./writeForm.jsp">전화번호 등록폼</a> <%--.으로 하면 현재위치/이동 --%>
 	</body>
 </html>
